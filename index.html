@@ -5,234 +5,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>책통클럽 인천프리미엄관</title>
   <style>
+    :root {
+      --navy:      #0e1f40;
+      --navy-mid:  #162d5a;
+      --navy-light:#1e3f7a;
+      --gold:      #c9a84c;
+      --gold-light:#e8c96a;
+      --gold-pale: #f5f0e0;
+      --white:     #ffffff;
+      --off-white: #f8f7f4;
+      --text:      #2a2a2a;
+      --text-muted:#666;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
-      color: #333;
-      background: #fff;
+      color: var(--text);
+      background: var(--white);
     }
 
     /* ── 헤더 ── */
     header {
-      background: #1a3a6b;
-      color: #fff;
+      background: var(--navy);
+      color: var(--white);
       padding: 0 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 70px;
+      height: 72px;
+      border-bottom: 2px solid var(--gold);
     }
     .logo {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
-    .logo span { color: #f5c518; }
+    .logo span { color: var(--gold); }
     nav a {
-      color: #cdd8f0;
+      color: rgba(255,255,255,.65);
       text-decoration: none;
       margin-left: 28px;
       font-size: 14px;
+      letter-spacing: .3px;
+      transition: color .2s;
     }
-    nav a:hover { color: #fff; }
+    nav a:hover { color: var(--gold); }
 
     /* ── 히어로 ── */
     .hero {
-      background: linear-gradient(135deg, #1a3a6b 0%, #2e6db4 60%, #5594d4 100%);
-      color: #fff;
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+      color: var(--white);
       text-align: center;
-      padding: 90px 20px 80px;
+      padding: 100px 20px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -60px; left: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+      border-radius: 50%;
     }
     .hero .badge {
       display: inline-block;
-      background: #7bc142;
-      color: #fff;
-      font-size: 13px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 12px;
       font-weight: 700;
-      padding: 4px 14px;
+      padding: 5px 18px;
       border-radius: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
     }
     .hero h1 {
-      font-size: 46px;
+      font-size: 48px;
       font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 16px;
+      line-height: 1.25;
+      margin-bottom: 18px;
     }
-    .hero h1 em { color: #f5c518; font-style: normal; }
+    .hero h1 em { color: var(--gold); font-style: normal; }
     .hero p {
-      font-size: 18px;
-      opacity: .85;
-      max-width: 560px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
+      font-size: 17px;
+      opacity: .82;
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
     }
     .hero-btns a {
       display: inline-block;
-      padding: 14px 32px;
-      border-radius: 6px;
+      padding: 14px 34px;
+      border-radius: 4px;
       font-size: 15px;
       font-weight: 700;
       text-decoration: none;
       margin: 6px;
+      letter-spacing: .3px;
     }
-    .btn-primary { background: #f5c518; color: #1a3a6b; }
-    .btn-outline { border: 2px solid #fff; color: #fff; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,.6); color: var(--white); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── 색상 띠 ── */
+    /* ── 골드 구분선 ── */
     .color-bar {
-      height: 6px;
-      background: linear-gradient(to right, #e63329 25%, #f5c518 25% 50%, #4caf50 50% 75%, #2e6db4 75%);
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent);
     }
 
     /* ── 섹션 공통 ── */
-    section { padding: 70px 40px; max-width: 1100px; margin: 0 auto; }
+    section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
     .section-title {
       font-size: 28px;
-      font-weight: 800;
-      color: #1a3a6b;
-      margin-bottom: 8px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.35;
     }
     .section-sub {
       font-size: 15px;
-      color: #666;
-      margin-bottom: 40px;
+      color: var(--text-muted);
+      margin-bottom: 44px;
+      line-height: 1.7;
     }
 
     /* ── 특징 카드 ── */
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .card {
-      background: #f7f9fc;
+      background: var(--white);
       border-radius: 12px;
-      padding: 32px 24px;
-      border-top: 4px solid #2e6db4;
+      padding: 34px 26px;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(14,31,64,.08);
     }
     .card .icon { font-size: 36px; margin-bottom: 14px; }
-    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #1a3a6b; }
-    .card p { font-size: 14px; color: #555; line-height: 1.7; }
+    .card h3 { font-size: 17px; font-weight: 800; margin-bottom: 10px; color: var(--navy); }
+    .card p { font-size: 14px; color: #555; line-height: 1.75; }
 
     /* ── 커리큘럼 표 ── */
     .curriculum-wrap { overflow-x: auto; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
     table thead th {
-      background: #1a3a6b;
-      color: #fff;
-      padding: 12px 16px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 13px 16px;
       text-align: center;
+      font-weight: 700;
     }
-    table tbody tr:nth-child(even) { background: #f2f6fb; }
+    table thead th:first-child { border-left: none; }
+    table tbody tr:nth-child(even) { background: var(--off-white); }
     table tbody td {
-      padding: 12px 16px;
+      padding: 13px 16px;
       text-align: center;
-      border-bottom: 1px solid #e0e8f0;
+      border-bottom: 1px solid #e8e4d8;
       vertical-align: middle;
     }
     .tag {
       display: inline-block;
-      background: #ddeeff;
-      color: #1a5fa3;
+      background: var(--gold-pale);
+      color: #7a5f1a;
       font-size: 12px;
-      padding: 2px 8px;
+      padding: 2px 9px;
       border-radius: 4px;
       margin: 2px;
+      font-weight: 600;
     }
 
     /* ── 시간표 ── */
-    .timetable { display: flex; gap: 20px; flex-wrap: wrap; }
+    .timetable { display: flex; gap: 16px; flex-wrap: wrap; }
     .time-card {
-      flex: 1; min-width: 200px;
-      background: #1a3a6b;
-      color: #fff;
+      flex: 1; min-width: 180px;
+      background: var(--navy);
+      color: var(--white);
       border-radius: 10px;
-      padding: 24px;
+      padding: 22px;
       text-align: center;
+      border-bottom: 3px solid var(--gold);
     }
-    .time-card .class { font-size: 13px; opacity: .7; margin-bottom: 6px; }
-    .time-card .time { font-size: 22px; font-weight: 800; }
-    .time-card .desc { font-size: 12px; opacity: .7; margin-top: 6px; }
+    .time-card .class { font-size: 12px; opacity: .65; margin-bottom: 6px; letter-spacing: .3px; }
+    .time-card .time { font-size: 20px; font-weight: 800; color: var(--gold-light); }
+    .time-card .desc { font-size: 12px; opacity: .6; margin-top: 6px; }
 
     /* ── 공지 배너 ── */
     .notice {
-      background: #fff8e1;
-      border-left: 5px solid #f5c518;
+      background: var(--gold-pale);
+      border-left: 4px solid var(--gold);
       border-radius: 8px;
       padding: 20px 24px;
       margin-bottom: 24px;
     }
-    .notice h4 { font-size: 16px; color: #7a5800; margin-bottom: 8px; }
-    .notice ul { padding-left: 18px; font-size: 14px; color: #555; line-height: 1.9; }
+    .notice h4 { font-size: 15px; color: #7a5f1a; margin-bottom: 8px; font-weight: 700; }
+    .notice ul { padding-left: 18px; font-size: 14px; color: #555; line-height: 2; }
 
     /* ── 방학특강 그리드 ── */
-    .special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .special-card {
-      border: 1px solid #d0dff0;
+      border: 1px solid #e2dcc8;
       border-radius: 10px;
       padding: 22px;
+      background: var(--white);
     }
     .special-card .num {
-      display: inline-block;
+      display: inline-flex;
       width: 28px; height: 28px;
-      background: #2e6db4;
-      color: #fff;
+      background: var(--navy);
+      color: var(--gold);
       border-radius: 50%;
-      text-align: center;
-      line-height: 28px;
-      font-size: 13px;
-      font-weight: 700;
+      align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
       margin-bottom: 10px;
     }
-    .special-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1a3a6b; }
+    .special-card h4 { font-size: 15px; font-weight: 800; margin-bottom: 6px; color: var(--navy); }
     .special-card p { font-size: 13px; color: #555; line-height: 1.7; }
-    .special-card .price {
-      font-size: 13px; font-weight: 700; color: #e63329; margin-top: 8px;
-    }
+    .special-card .price { font-size: 13px; font-weight: 700; color: var(--gold); margin-top: 8px; }
 
     /* ── 학사일정 ── */
     .schedule-note {
-      background: #f0f5ff;
+      background: var(--off-white);
+      border: 1px solid #e2dcc8;
       border-radius: 10px;
-      padding: 24px 28px;
+      padding: 28px 32px;
       font-size: 14px;
       color: #444;
-      line-height: 2;
+      line-height: 2.1;
     }
-    .schedule-note strong { color: #1a3a6b; }
+    .schedule-note strong { color: var(--navy); font-weight: 700; }
 
     /* ── CTA ── */
     .cta {
-      background: #1a3a6b;
-      color: #fff;
+      background: var(--navy);
+      color: var(--white);
       text-align: center;
-      padding: 70px 20px;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
     }
-    .cta h2 { font-size: 30px; font-weight: 800; margin-bottom: 12px; }
-    .cta p { font-size: 16px; opacity: .8; margin-bottom: 30px; }
-    .cta a {
+    .cta::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .cta h2 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+    .cta p { font-size: 16px; opacity: .78; margin-bottom: 32px; line-height: 1.7; }
+    .cta a.gold-btn {
       display: inline-block;
-      background: #f5c518;
-      color: #1a3a6b;
-      padding: 14px 40px;
-      border-radius: 6px;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 15px 42px;
+      border-radius: 4px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
+      margin: 6px;
+      letter-spacing: .3px;
+      transition: background .2s;
     }
+    .cta a.gold-btn:hover { background: var(--gold-light); }
+    .cta a { display: inline-block; background: var(--gold); color: var(--navy); padding: 15px 42px; border-radius: 4px; font-size: 16px; font-weight: 800; text-decoration: none; margin: 6px; }
 
     /* ── 푸터 ── */
     footer {
-      background: #111;
-      color: #888;
+      background: #06101f;
+      color: #7a7a7a;
       text-align: center;
-      padding: 30px 20px;
+      padding: 36px 20px;
       font-size: 13px;
-      line-height: 1.9;
+      line-height: 2;
+      border-top: 1px solid rgba(201,168,76,.2);
     }
-    footer a { color: #aaa; text-decoration: none; }
+    footer a { color: var(--gold); text-decoration: none; opacity: .8; }
+    footer a:hover { opacity: 1; }
+    footer strong { color: #ccc; }
+
+    /* ── 배경 섹션 ── */
+    .bg-navy { background: var(--navy); }
+    .bg-off  { background: var(--off-white); }
 
     /* ── 반응형 ── */
     @media (max-width: 768px) {
@@ -240,6 +297,7 @@
       .features { grid-template-columns: 1fr; }
       .special-grid { grid-template-columns: 1fr; }
       header { flex-direction: column; height: auto; padding: 16px; gap: 10px; }
+      section { padding: 60px 20px; }
     }
   </style>
 </head>
